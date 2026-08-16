@@ -1,0 +1,52 @@
+:root {
+  --color-bg: #f5f7fa;
+  --color-surface: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-muted: #555555;
+  --color-primary: #2563eb;
+  --color-primary-text: #ffffff;
+  --color-border: #d9dee5;
+  --color-selected: #2563eb;
+  --color-error-bg: #fdecec;
+  --color-error-text: #a41414;
+  --color-error-border: #e57373;
+  --min-tap-size: 44px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+button {
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+input {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+a {
+  color: var(--color-primary);
+}
