@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SearchForm from "@/components/SearchForm";
 import LocationButton from "@/components/LocationButton";
 import ForecastCalendar from "@/components/ForecastCalendar";
@@ -8,7 +8,10 @@ import WeatherCard from "@/components/WeatherCard";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorMessage from "@/components/ErrorMessage";
 import { WeatherResponse } from "@/lib/types";
+import { getWeatherTheme } from "@/lib/weatherTheme";
 import styles from "./page.module.css";
+
+const LAST_RESULT_KEY = "weather-app:last-result";
 
 export default function Home() {
   const [weather, setWeather] = useState<WeatherResponse | null>(null);
@@ -19,6 +22,18 @@ export default function Home() {
 
   const isLoading = isSearching || isLocating;
 
+  useEffect(() => {
+    const saved = localStorage.getItem(LAST_RESULT_KEY);
+    if (!saved) return;
+    try {
+      const data: WeatherResponse = JSON.parse(saved);
+      setWeather(data);
+      setSelectedDate(data.forecast[0]?.date ?? "");
+    } catch {
+      localStorage.removeItem(LAST_RESULT_KEY);
+    }
+  }, []);
+
   const selectedDay = useMemo(() => {
     if (!weather) return null;
     return (
@@ -27,6 +42,8 @@ export default function Home() {
       null
     );
   }, [weather, selectedDate]);
+
+  const theme = getWeatherTheme(selectedDay?.condition.icon ?? "");
 
   async function fetchWeather(params: string) {
     setError(null);
@@ -39,6 +56,7 @@ export default function Home() {
       }
       setWeather(data);
       setSelectedDate(data.forecast[0]?.date ?? "");
+      localStorage.setItem(LAST_RESULT_KEY, JSON.stringify(data));
     } catch {
       setError("通信エラーが発生しました。しばらくしてから再度お試しください");
     }
@@ -55,7 +73,7 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} ${styles[theme]}`}>
       <h1 className={styles.title}>天気予報アプリ</h1>
 
       <div className={styles.controls}>

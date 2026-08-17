@@ -1,4 +1,5 @@
 import { getWeatherEmoji } from "@/lib/weatherIcon";
+import { getClothingAdvice, getRainAdvice } from "@/lib/advice";
 import styles from "./WeatherCard.module.css";
 
 type Props = {
@@ -38,6 +39,16 @@ export default function WeatherCard({
             <span aria-hidden="true">☂️</span>
             <span>降水確率 {pop}%</span>
           </div>
+        )}
+      </div>
+      <div className={styles.advice}>
+        <p className={styles.adviceItem}>
+          <span aria-hidden="true">👕</span> {getClothingAdvice(temperature)}
+        </p>
+        {pop !== undefined && (
+          <p className={styles.adviceItem}>
+            <span aria-hidden="true">🌂</span> {getRainAdvice(pop)}
+          </p>
         )}
       </div>
     </div>

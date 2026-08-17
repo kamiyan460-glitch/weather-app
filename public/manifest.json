@@ -1,0 +1,17 @@
+{
+  "name": "天気予報アプリ",
+  "short_name": "天気予報",
+  "description": "都市名や現在地から天気予報を調べられるアプリです",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

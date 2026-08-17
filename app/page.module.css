@@ -5,6 +5,89 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-height: 100vh;
+  transition: background-color 0.6s ease;
+}
+
+.default {
+  background-color: var(--color-bg);
+}
+
+.sunny {
+  background: linear-gradient(180deg, #fff6d8 0%, #f5f7fa 320px);
+}
+
+.cloudy {
+  background: linear-gradient(180deg, #e6ebf1 0%, #f5f7fa 320px);
+}
+
+.rainy {
+  background-image: repeating-linear-gradient(
+      115deg,
+      rgba(99, 132, 168, 0.16) 0px,
+      rgba(99, 132, 168, 0.16) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    linear-gradient(180deg, #dce6f0 0%, #f5f7fa 320px);
+  background-size: 24px 24px, 100% 100%;
+  animation: rainDrift 0.6s linear infinite;
+}
+
+.thunder {
+  background-image: repeating-linear-gradient(
+      115deg,
+      rgba(70, 76, 110, 0.22) 0px,
+      rgba(70, 76, 110, 0.22) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    linear-gradient(180deg, #cfd3e0 0%, #f5f7fa 320px);
+  background-size: 20px 20px, 100% 100%;
+  animation: rainDrift 0.45s linear infinite;
+}
+
+.snowy {
+  background-image: repeating-linear-gradient(
+      70deg,
+      rgba(255, 255, 255, 0.9) 0px,
+      rgba(255, 255, 255, 0.9) 2px,
+      transparent 2px,
+      transparent 18px
+    ),
+    linear-gradient(180deg, #eef3f8 0%, #f5f7fa 320px);
+  background-size: 26px 26px, 100% 100%;
+  animation: snowDrift 3s linear infinite;
+}
+
+.foggy {
+  background: linear-gradient(180deg, #e9edf0 0%, #f5f7fa 320px);
+}
+
+@keyframes rainDrift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: -12px 24px, 0 0;
+  }
+}
+
+@keyframes snowDrift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 13px 26px, 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rainy,
+  .thunder,
+  .snowy {
+    animation: none;
+  }
 }
 
 .title {

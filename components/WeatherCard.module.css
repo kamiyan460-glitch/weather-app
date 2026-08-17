@@ -47,3 +47,19 @@
   gap: 6px;
   font-size: 16px;
 }
+
+.advice {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background-color: var(--color-bg);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.adviceItem {
+  margin: 4px 0;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
